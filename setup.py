@@ -5,7 +5,7 @@ from setuptools import setup
 setup(name='fbscraper',
       version='0.1',
       description='',
-      url='http://github.com/elcoc0/fb_scraper',
+      url='https://github.com/elcoc0/fbscraper',
       author='elcoc0',
       author_email='elcoco@protonmail.ch',
       license='MIT',
