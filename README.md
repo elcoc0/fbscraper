@@ -17,7 +17,7 @@ the `fbscraper` is composed by two main tools, the `dumper` and the `parser`. Th
 
 The `--cookie` option is mandatory for both tools, this is all request headers and POST information that Facebook uses for authenticating yourself.
 
-To get all this information, just open your browser and go inside the `Network tab` from the `Developers Tools` and navigate to any Facebook page. Select a request to a php file and copy the information in a file as follow :
+To get all this information, just open your browser and go inside the `Network tab` from the `Developers Tools` and navigate to any Facebook page. Select a request to a php file and copy the information in a file as follow:
 
 ![Request headers and POST data](/cookie.png)
 
@@ -25,9 +25,21 @@ Don't worry, you would just have to do this process once in a while when the coo
 
 By default, every information retrieved by both tools are saved inside `output` folder when you run the command. Both tools works very well together, see just below how to use them correctly !
 
-### Using the dumper
+### Dump them all...
 
-#### Printing conversation metadata
+Dump every bit of messages from every conversations of your Facebook account, process as follow:
+
+`fb_scraper dumper -s 10000 -c request_data.txt`
+
+### ... Then parse them all
+
+Here is the basic command for parsing (using `dl` mode and retrieving any data type) all the conversations you have already dumped inside the `output` folder:
+
+`fbscraper parser -m dl -i output/*/complete.json -c request_data.txt`
+
+## Using the dumper
+
+### Printing conversation metadata
 
 First of all you should run this command in order to print some metadata about EVERY conversation attached to you:
 
@@ -35,7 +47,7 @@ First of all you should run this command in order to print some metadata about E
 
 It prints out conversation IDs, participants, type (group or user), status (inbox or archived).
 
-#### Dumping specific conversations based on their ID
+### Dumping specific conversations based on their ID
 
 Then you may want to dump specific conversations like this (`--size` / `-s` option lets you specify the chunk of messages retrieved by request):
 
@@ -43,38 +55,28 @@ Then you may want to dump specific conversations like this (`--size` / `-s` opti
 
 You will find inside the `output` folder, one folder for each conversation dumped with two files `complete.json` and  `complete.pretty.json` (more human-readable). These are all the information from a conversation, this is not very human readable data, therefore see how to parse it and retrieve meaning full data using the `Parser` tool.
 
-#### Dump them all
-
-Finally, you may want to just dumped every bit of messages from your Facebook account, process as follow:
-
-`fb_scraper dumper -s 10000 -c request_data.txt`
-
-### Using the parser
+## Using the parser
 
 The parser uses the `--infile` option to specify which JSON conversation files you want to parse.
 
-#### Data types
+### Data types
 
 The `--data` lets you specify which type of data you trying to retrieve from the parsing. You may specify one or many of the following: `messages  pictures gifs videos files links`. You may also just tell the dumper to try to retrieve any type using `all` (default option value).
 
-#### Report mode
+### Report mode
 
-Two modes you may choose using `--mode` option. `report` for only printing reports about conversations as follow :
+Two modes you may choose using `--mode` option. `report` for only printing reports about conversations as follow:
 
 ```
 Data report : 1552 messages, 18 pictures, 0 gifs, 0 videos, 1 files, 66 links parsed
 ```
 You will find a file for each data types containing all information (links, messages...).
 
-#### Download mode
+### Download mode
 
 The `dl` mode, additionally to report, it also launches threads for downloading corresponding files (pictures, gifs, videos, non-media files).
 
-#### Parse them all
-
-Here is the basic command for parsing (using `dl` mode and retrieving any data type) all the conversations you have already dumped inside the `output` folder:
-
-`fbscraper parser -m dl -i output/*/complete.json -c request_data.txt`
+`fbscraper parser -m dl -d all -i output/*/complete.json -c request_data.txt --threads=8`
 
 ## Getting Started
 
@@ -116,4 +118,4 @@ Feel free to open a pull request at any bug encountered or improvement that you 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
