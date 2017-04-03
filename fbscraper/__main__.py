@@ -83,8 +83,10 @@ def main():
     parser = argparse.ArgumentParser(description="Script for parsing a FB"
                                                  " JSON conversation and ")
     subparsers = parser.add_subparsers(help='Tool to use')
-    dumper_parser = subparsers.add_parser('dumper', help='Dumper tool')
-    parser_parser = subparsers.add_parser('parser', help='Parser tool')
+    dumper_parser = subparsers.add_parser('dumper', help='Dumper tool. '
+                                          'See help: fbscraper dumper -h')
+    parser_parser = subparsers.add_parser('parser', help='Parser tool. '
+                                          'See help: fbscraper parser -h')
 
     dumper_parser.add_argument('-id', "--convers-id", nargs='*',
                                help="Conversation IDs to dump")
