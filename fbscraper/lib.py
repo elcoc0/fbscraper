@@ -161,6 +161,6 @@ def build_fmt_str_from_enum(enums):
     """
     formatted = "["
     for e in enums:
-        formatted += "'" + e.name + "', "
+        formatted += "'" + e.value.lower() + "', "
     formatted = formatted[:-len(", ")] + "]"
     return formatted

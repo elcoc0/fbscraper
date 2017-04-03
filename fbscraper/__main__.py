@@ -116,12 +116,12 @@ def main():
 
     parser_parser.add_argument("-d", "--data", nargs="+",
                                type=FBDataTypes,
+                               default=[FBDataTypes.ALL],
                                help="Data to retrieve from the --infile file. "
                                     "DATA may be one or many of "
                                     + build_fmt_str_from_enum(FBDataTypes))
 
     parser_parser.add_argument("-i", "--infile", nargs='+',
-                               # type=argparse.FileType("r"),
                                help="File to parse and try to retrieve data "
                                     "from the --data types")
 
