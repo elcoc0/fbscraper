@@ -508,10 +508,10 @@ class FBParser(object):
         r = requests.get(url, stream=True)
         with open(filelocation, 'wb') as f:
             for chunk in r.iter_content(chunk_size=1024):
-                if not self.quit:
-                    if chunk:
-                        f.write(chunk)
-                break
+                if self.quit:
+                    break
+                if chunk:
+                    f.write(chunk)
 
     def write_reports_to_file(self):
         """Write all reports inside the `self.output_convers` location.
