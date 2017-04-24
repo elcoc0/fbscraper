@@ -139,8 +139,6 @@ class FBDumper(object):
                                        self.user_raw_data).group(1)
         post_data['fb_dtsg'] = re.search('fb_dtsg:(.*)\n',
                                          self.user_raw_data).group(1)
-        post_data['ttstamp'] = re.search('ttstamp:(.*)\n',
-                                         self.user_raw_data).group(1)
         post_data['__rev'] = re.search('__rev:(.*)\n',
                                        self.user_raw_data).group(1)
 
