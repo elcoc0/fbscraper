@@ -374,9 +374,10 @@ class FBParser(object):
                     self.links += attachment["share"]["uri"] + "\n"
 
                 self.cnt_links += 1
-        for link_range in msg["ranges"]:
-            self.links += link_range["entity"]["url"] + "\n"
-            self.cnt_links += 1
+        if "ranges" in msg:
+            for link_range in msg["ranges"]:
+                self.links += link_range["entity"]["url"] + "\n"
+                self.cnt_links += 1
 
         return 0
 
